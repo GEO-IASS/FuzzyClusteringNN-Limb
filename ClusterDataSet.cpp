@@ -6,7 +6,12 @@
 #include <cmath>
 #include <iostream>
 
-void ClusterDataSet::setInitialClusters() {
+void ClusterDataSet::setInitialClusters(std::vector<Signal> &signalData) {
+
+    m_membership.resize(signalData.size());
+    for (int i = 0; i < signalData.size(); i++) {
+        m_membership[i].resize(m_clusters.size());
+    }
     std::vector<std::vector<double>> clusters;
     srand(time(NULL));
 
@@ -18,19 +23,23 @@ void ClusterDataSet::setInitialClusters() {
         std::vector<double> currentSignal;
         while (duplicate) {
             duplicate = false;
-            randomSignalIndex = rand() % m_signalData.size();
-            currentSignal = m_signalData[randomSignalIndex].getSignal();
+            randomSignalIndex = rand() % signalData.size();
+            currentSignal = signalData[randomSignalIndex].getSignal();
             for (int i = 0; i < clusters.size(); i++) {
-               if (clusters[i] == currentSignal) {
-                   duplicate = true;
-                   break;
-               }
+                if (clusters[i][currentSignal.size()-1] == currentSignal[currentSignal.size()-1]) {
+                    duplicate = true;
+                    break;
+                }
             }
         }
 
         clusters.push_back(currentSignal);
-        m_clusters[clusterIndex].setCentriod(m_signalData[randomSignalIndex]);
+        m_clusters[clusterIndex].setCentriod(signalData[randomSignalIndex]);
     }
+}
+
+void ClusterDataSet::setInitialClusters() {
+    setInitialClusters(m_signalData);
 }
 
 void ClusterDataSet::reindexSignals() {
@@ -49,6 +58,7 @@ void ClusterDataSet::reindexSignals() {
 
 double ClusterDataSet::calculateDistance(Signal point, Signal centroid) {
     double sum = 0;
+
     for (int i = 0; i < point.getSignal().size(); i++) {
         sum += pow(point.getSignal()[i] - centroid.getSignal()[i], 2);
     }
@@ -56,37 +66,39 @@ double ClusterDataSet::calculateDistance(Signal point, Signal centroid) {
 }
 
 double ClusterDataSet::calculateObjectiveFunction() {
-    double jk = 0;
+    double jm = 0;
 
     for (int i = 0; i < m_signalData.size(); i++) {
         for (int j = 0; j < m_clusters.size(); j++) {
-            jk += pow(m_membership[i][j], m_fuzzifier) * pow(calculateDistance(m_signalData[i], m_clusters[j].getCentriod()), 2);
+            jm += pow(m_membership[i][j], m_fuzzifier) * pow(calculateDistance(m_signalData[i], m_clusters[j].getCentriod()), 2);
         }
     }
-    return jk;
+
+    return jm;
 }
 
 void ClusterDataSet::calculateClusterCenters() {
     for (int j = 0; j < m_clusters.size(); j++) {
-        double l = 1;
+        double l = 0;
         std::vector<double> newCentroid;
 
         newCentroid.resize(m_clusters[j].getCentriod().getSignal().size());
         for (int i = 0; i < m_signalData.size(); i++) {
             double uu = pow(m_membership[i][j], m_fuzzifier);
             for (int k = 0; k < m_clusters[j].getCentriod().getSignal().size(); k++) {
-                newCentroid[k] += uu * m_clusters[j].getCentriod().getSignal()[k];
+                newCentroid[k] += uu * m_signalData[i].getSignal()[k];
             }
             l += uu;
         }
 
         for (int k = 0; k < m_clusters[j].getCentriod().getSignal().size(); k++) {
-            m_clusters[j].getCentriod().getSignal()[k] = newCentroid[k] / l;
+            newCentroid[k] = newCentroid[k] / l;
         }
+        m_clusters[j].setCentriod(newCentroid);
     }
 }
 
-std::vector<std::vector<double>> ClusterDataSet::fuzzyCMeansClustering(std::vector<Signal> &signalData) {
+std::vector<std::vector<double>> ClusterDataSet::fuzzyCMeansClustering(std::vector<Signal> &signalData, bool intializeClusters) {
     // Run Fuzzy C-Means on entire data set to create clusters
     // Choose:
     // the number of clusters,
@@ -94,43 +106,45 @@ std::vector<std::vector<double>> ClusterDataSet::fuzzyCMeansClustering(std::vect
     // weighting exponent,
     m_fuzzifier = 2;
     // iteration limit (iter),
-    m_iterationLimit = 20;
+    m_iterationLimit = 1000;
     // termination criterion and norm for error.
     m_epsilon = 0.15;
     // Signal Data
     m_signalData = signalData;
 
 
-    m_membership.resize(m_signalData.size());
-    for (int i = 0; i < m_signalData.size(); i++) {
-        m_membership[i].resize(m_clusters.size());
+    if (intializeClusters) {
+        m_membership.resize(m_signalData.size());
+        for (int i = 0; i < m_signalData.size(); i++) {
+            m_membership[i].resize(m_clusters.size());
+        }
+
+        setInitialClusters();
+
+        double distance;
+
+        for (int i = 0; i < m_signalData.size(); i++) {
+            double sum = 0;
+            double sum2 = 0;
+
+            for (int j = 0; j < m_clusters.size(); j++) {
+                distance = calculateDistance(signalData[i], m_clusters[j].getCentriod());
+                m_membership[i][j] = (distance == 0) ? m_epsilon : distance;
+                sum += m_membership[i][j];
+            }
+
+            for (int j = 0; j < m_clusters.size(); j++) {
+                m_membership[i][j] = 1.0 / pow(m_membership[i][j] / sum, (2.0 / (m_fuzzifier - 1)));
+                sum2 += m_membership[i][j];
+            }
+
+            for (int j = 0; j < m_clusters.size(); j++) {
+                m_membership[i][j] = m_membership[i][j] / sum2;
+            }
+        }
+
+        reindexSignals();
     }
-
-    setInitialClusters();
-
-    double distance;
-
-    for (int i = 0; i < m_signalData.size(); i++) {
-        double sum = 0;
-        double sum2 = 0;
-
-        for (int j = 0; j < m_clusters.size(); j++) {
-            distance = calculateDistance(signalData[i], m_clusters[j].getCentriod());
-            m_membership[i][j] = (distance == 0) ? m_epsilon : distance;
-            sum += m_membership[i][j];
-        }
-
-        for (int j = 0; j < m_clusters.size(); j++) {
-            m_membership[i][j] = 1.0 / pow(m_membership[i][j] / sum, (2.0 / (m_fuzzifier - 1)));
-            sum2 += m_membership[i][j];
-        }
-
-        for (int j = 0; j < m_clusters.size(); j++) {
-            m_membership[i][j] = m_membership[i][j] / sum2;
-        }
-    }
-
-    reindexSignals();
 
     int iter = 0;
     while (iter <= m_iterationLimit) {
@@ -139,20 +153,20 @@ std::vector<std::vector<double>> ClusterDataSet::fuzzyCMeansClustering(std::vect
 
         calculateClusterCenters();
 
-        for (int c = 0; c < m_clusters.size(); c++) {
-            for (int h = 0; h < m_signalData.size(); h++) {
-                double top = calculateDistance(m_signalData[h], m_clusters[c].getCentriod());
-                if (top < 0.05)
-                    top = 0.05;
+        for (int j = 0; j < m_clusters.size(); j++) {
+            for (int i = 0; i < m_signalData.size(); i++) {
+                double top = calculateDistance(m_signalData[i], m_clusters[j].getCentriod());
+                if (top < m_epsilon)
+                    top = m_epsilon;
 
                 double sumTerms = 0;
-                for (int ck = 0; ck < m_clusters.size(); ck++) {
-                    double distance  = calculateDistance(m_signalData[h], m_clusters[ck].getCentriod());
-                    if (distance < 0.05)
-                        distance = 0.05;
+                for (int k = 0; k < m_clusters.size(); k++) {
+                    double distance  = calculateDistance(m_signalData[i], m_clusters[k].getCentriod());
+                    if (distance < m_epsilon)
+                        distance = 1;
                     sumTerms += pow(top / distance, 2.0 / (m_fuzzifier - 1.0));
                 }
-                m_membership[h][c] = 1.0 / sumTerms;
+                m_membership[i][j] = pow (sumTerms , -1.0) ;
             }
         }
 
@@ -160,7 +174,13 @@ std::vector<std::vector<double>> ClusterDataSet::fuzzyCMeansClustering(std::vect
 
         double jkNew = calculateObjectiveFunction();
 
-        if (fabs(m_objective_function - jkNew) < m_epsilon) {
+        std::cout << "Iteration: " << iter << std::endl;
+        std::cout << "J: " << m_objective_function << std::endl;
+        std::cout << "New J: " << jkNew << std::endl;
+        std::cout << "Error: " << fabs(jkNew - m_objective_function) << std::endl;
+        std::cout << "Epsilon: " << m_epsilon << std::endl;
+
+        if (fabs(jkNew - m_objective_function) < m_epsilon) {
             break;
         }
     }

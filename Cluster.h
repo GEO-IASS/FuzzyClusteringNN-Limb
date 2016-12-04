@@ -14,10 +14,8 @@ class Cluster {
 public:
     Cluster(Signal initialCentriod);
     Cluster(void);
-    void addToCluster(Signal signal);
     Signal getCentriod(void) const;
     void setCentriod(Signal newCentriod);
-    void calculateNewCentriod(void);
 private:
     double randomPoint(void) const {return rand() / double(RAND_MAX);};
     std::vector<Signal> m_signals; // m_signals[signalValue]

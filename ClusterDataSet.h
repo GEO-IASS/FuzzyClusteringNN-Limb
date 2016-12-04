@@ -14,8 +14,9 @@ public:
     ClusterDataSet(const std::vector<Cluster> &clusters);
     ClusterDataSet(const unsigned numOfClusters);
     void addCluster(Cluster &newCluster);
-    std::vector<std::vector<double>> fuzzyCMeansClustering(std::vector<Signal> &signalData);
+    std::vector<std::vector<double>> fuzzyCMeansClustering(std::vector<Signal> &signalData, bool intializeClusters = true);
     std::vector<Cluster> getClusters(void);
+    void setInitialClusters(std::vector<Signal> &signalData);
 private:
     void setInitialClusters(void);
     void reindexSignals(void);

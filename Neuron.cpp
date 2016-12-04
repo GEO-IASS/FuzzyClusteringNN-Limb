@@ -5,7 +5,7 @@
 #include "Neuron.h"
 
 double Neuron::eta = 2; // overall net learning rate
-double Neuron::alpha = 0.1; // momentum, multiplier of last deltaWeight [
+double Neuron::alpha = 0.1; // momentum, multiplier of last deltaWeight
 
 void Neuron::updateInputWeights(Layer &prevLayer) {
     // The weights to be updated are in the Connection container in the neurons in the preceding layer
@@ -29,7 +29,7 @@ double Neuron::sumDeltaOfWeights(const Layer &nextLayer) const {
     double sum = 0.0;
 
     // Sum our contributions of the errors at the nodes we feed
-    for (unsigned neuronNum = 0; neuronNum < nextLayer.size() - 1; neuronNum++) {
+    for (unsigned neuronNum = 0; neuronNum < nextLayer.size(); neuronNum++) {
         sum += m_outputWeights[neuronNum].weight * nextLayer[neuronNum].m_gradient;
     }
 
@@ -46,19 +46,17 @@ void Neuron::calcOutputGradients(double targetVal) {
     m_gradient = delta * Neuron::activationFunctionDerivative(m_outputVal);
 }
 double Neuron::activationFunction(double x) {
-    // tanh - output range [-1.0...1.0]
-    return tanh(x);
+    return 1.0 / (1.0 + exp(-x));
 }
 
-double Neuron::activationFunctionDerivative(double x){
-    return 1.0 - (x * x);
+double Neuron::activationFunctionDerivative(double x) {
+    return x * (1.0 - x);
 }
 
 void Neuron::feedForward(Layer &prevLayer) {
     double sum = 0.0;
 
     // Sum the previous layer's outputs (which are our inputs)
-    // Include the bias node from the previous layer
     for (unsigned neuronNum = 0; neuronNum < prevLayer.size(); neuronNum++) {
         sum += prevLayer[neuronNum].getOutputVal() * prevLayer[neuronNum].m_outputWeights[m_myIndex].weight;
     }
