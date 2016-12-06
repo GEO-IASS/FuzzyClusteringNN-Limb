@@ -25,12 +25,11 @@ The neural network is fed 5 inputs:
 The neural network returns 6 outputs:
   - The probability that the Signal provided corresponds with one of six upper-limb motions
     - Resting
-    - Wrist Supination,
+    - Wrist Supination
     - Grasp
     - Wrist Pronation 
     - Elbow extension
     - Elbow flexion 
-
 
 The network is fed this information through a single hidden layer (You can use multiple hidden layers by adding another layer to the `topology` line in the training file).
 More information on the network's cost and activation functions can be found in the linked article.
