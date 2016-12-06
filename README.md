@@ -18,8 +18,8 @@ The program then executes as follows:
 ## Neural Network
 
 The neural network is fed 5 inputs:
-  - `A four-order AR Model`
-  - `Signal power`
+  - A four-order AR Model
+  - Signal power
 
 The neural network returns 6 outputs:
   - The probability that the Signal provided corresponds with one of six upper-limb motions
