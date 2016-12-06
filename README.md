@@ -1,6 +1,5 @@
 # FuzzyClusteringNN-Limb
 
-## Overview
 This project is an implementation of an Multi-Layered Perceptron Neural Network discussed in following publication:
 - https://www.researchgate.net/profile/Bekir_Karlik/publication/9006747_A_Fuzzy_Clustering_Neural_Network_Architecture_for_Multifunction_Upper-Limb_Prosthesis/links/5667f45208ae34c89a027fad.pdf
 
