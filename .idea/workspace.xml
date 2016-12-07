@@ -12,26 +12,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c7dfa125-294a-4e05-8b07-c0d47c46402e" name="Default" comment="Fixing Network">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/trainingSamples/generatedTrainingData.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/trainingSamples/liveData.txt" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/Debug/FuzzyClusteringNN-Limb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/Debug/generatedTrainingData.txt" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/FuzzyClusteringNN-Limb.iml" afterPath="$PROJECT_DIR$/.idea/FuzzyClusteringNN-Limb.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+    <list default="true" id="c7dfa125-294a-4e05-8b07-c0d47c46402e" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ClusterDataSet.cpp" afterPath="$PROJECT_DIR$/ClusterDataSet.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ClusterDataSet.h" afterPath="$PROJECT_DIR$/ClusterDataSet.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Network.cpp" afterPath="$PROJECT_DIR$/Network.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Network.h" afterPath="$PROJECT_DIR$/Network.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Neuron.cpp" afterPath="$PROJECT_DIR$/Neuron.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Neuron.h" afterPath="$PROJECT_DIR$/Neuron.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Signal.cpp" afterPath="$PROJECT_DIR$/Signal.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Signal.h" afterPath="$PROJECT_DIR$/Signal.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TrainingData.cpp" afterPath="$PROJECT_DIR$/TrainingData.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TrainingData.h" afterPath="$PROJECT_DIR$/TrainingData.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.cpp" afterPath="$PROJECT_DIR$/main.cpp" />
     </list>
     <ignored path="FuzzyClusteringNN-Limb.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -81,7 +64,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="generatedTrainingData.txt" pinned="false" current-in-tab="true">
+      <file leaf-file-name="generatedTrainingData.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cmake-build-debug/generatedTrainingData.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
@@ -91,11 +74,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="30">
-              <caret line="2" column="6" lean-forward="false" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
+              <caret line="2" column="6" lean-forward="true" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -173,12 +156,12 @@
         <option value="$PROJECT_DIR$/Network.h" />
         <option value="$PROJECT_DIR$/cmake-build-debug/liveData.txt" />
         <option value="$PROJECT_DIR$/cmake-build-debug/generatedTrainingData.txt" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/ClusterDataSet.h" />
         <option value="$PROJECT_DIR$/main.cpp" />
         <option value="$PROJECT_DIR$/ClusterDataSet.cpp" />
         <option value="$PROJECT_DIR$/Signal.cpp" />
         <option value="$PROJECT_DIR$/Signal.h" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -213,34 +196,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="FuzzyClusteringNN-Limb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FuzzyClusteringNN-Limb" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FuzzyClusteringNN-Limb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="trainingSamples" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FuzzyClusteringNN-Limb" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FuzzyClusteringNN-Limb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cmake-build-debug" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -436,7 +391,7 @@
       <workItem from="1480980068948" duration="393000" />
       <workItem from="1480980496911" duration="3872000" />
       <workItem from="1481043539700" duration="35281000" />
-      <workItem from="1481126729981" duration="803000" />
+      <workItem from="1481126729981" duration="961000" />
     </task>
     <task id="LOCAL-00001" summary="Adding README.md">
       <created>1480375183071</created>
@@ -480,11 +435,18 @@
       <option name="project" value="LOCAL" />
       <updated>1480983811309</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Fixing Network and cleaning up code">
+      <created>1481127604246</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1481127604246</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="61098000" />
+    <option name="totallyTimeSpent" value="61256000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="28" y="23" width="1412" height="797" extended-state="0" />
@@ -546,7 +508,8 @@
     <MESSAGE value="Fixes some small bugs and cleaning up a few things....." />
     <MESSAGE value="Updating README" />
     <MESSAGE value="Fixing Network" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixing Network" />
+    <MESSAGE value="Fixing Network and cleaning up code" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixing Network and cleaning up code" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -816,14 +779,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="6" lean-forward="false" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ClusterDataSet.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -884,6 +839,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="6" lean-forward="true" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
           <folding />
         </state>
       </provider>
