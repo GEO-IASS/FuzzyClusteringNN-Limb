@@ -15,11 +15,11 @@ public:
     std::vector<double> getSignal(void);
     void setSignal(std::vector<double> signal);
     void setClusterIndex(double clusterIndex);
-    double getClusterIndex(void);
+    int getClusterIndex(void);
     std::string toString() const;
 private:
     std::vector<double> m_signal;
-    double m_clusterIndex;
+    int m_clusterIndex = 0;
 };
 
 

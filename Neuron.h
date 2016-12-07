@@ -29,9 +29,9 @@ public:
     void calcOutputGradients(double targetVal);
     void calcHiddenGradients(const Layer &nextLayer);
     void updateInputWeights(Layer &prevLayer);
+    void setLearningRate(double learningRate) { eta = learningRate; };
+    void setMomentum(double momentum) { alpha = momentum; };
 private:
-    static double eta;   // [0.0...1.0] overall net training weight
-    static double alpha; // [0.0...n] multiplier of the last weight change (momentum)
     static double activationFunction(double x);
     static double activationFunctionDerivative(double x);
     static double randomWeight(void) { return rand() / double(RAND_MAX); }
@@ -40,6 +40,8 @@ private:
     std::vector<Connection> m_outputWeights;
     unsigned m_myIndex;
     double m_gradient;
+    double eta;   // [0.0...1.0] overall net training weight
+    double alpha; // [0.0...n] multiplier of the last weight change (momentum)
 };
 
 #endif //NEURALNETWORK_NEURON_H

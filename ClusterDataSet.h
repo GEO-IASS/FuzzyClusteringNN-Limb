@@ -13,12 +13,14 @@ class ClusterDataSet {
 public:
     ClusterDataSet(const std::vector<Cluster> &clusters);
     ClusterDataSet(const unsigned numOfClusters);
-    void addCluster(Cluster &newCluster);
-    std::vector<std::vector<double>> fuzzyCMeansClustering(std::vector<Signal> &signalData, bool intializeClusters = true);
+    std::vector<std::vector<double>> fuzzyCMeansClustering(std::vector<Signal> &signalData);
     std::vector<Cluster> getClusters(void);
     void setInitialClusters(std::vector<Signal> &signalData);
+    void setFuzzifier(double fuzzifier) { m_fuzzifier = fuzzifier; };
+    void setErrorMargin(double errorMargin) { m_epsilon = errorMargin; };
+    void setIterationLimit(int iterLimit) { m_iterationLimit = iterLimit; };
+    Signal findCluster(Signal newSignal);
 private:
-    void setInitialClusters(void);
     void reindexSignals(void);
     double calculateDistance(Signal point, Signal centroid);
     double calculateObjectiveFunction(void);
@@ -27,7 +29,7 @@ private:
     std::vector<Signal> m_signalData;
     std::vector<std::vector<double>> m_membership;
     int m_numOfClusters;
-    int m_fuzzifier;
+    double m_fuzzifier;
     double m_epsilon;
     int m_iterationLimit;
     double m_objective_function;

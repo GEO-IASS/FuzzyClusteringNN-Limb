@@ -7,28 +7,16 @@ void TrainingData::getTopology(std::vector<unsigned> &topology) {
     std::string line;
     std::string label;
 
-    m_trainingDataFile.clear();
-    m_trainingDataFile.seekg(0, std::ios::beg);
-
     std::getline(m_trainingDataFile, line);
     std::stringstream stringStream(line);
     stringStream >> label;
-    if (this->isEof() || label.compare("topology:") != 0) {
-        std::abort();
-    }
 
-    while (!stringStream.eof()) {
-        unsigned number;
-        stringStream >> number;
-        topology.push_back(number);
+    if (label.compare("topology:") == 0) {
+        unsigned oneValue;
+        while (stringStream >> oneValue) {
+            topology.push_back(oneValue);
+        }
     }
-
-    std::cout << "Topology ";
-    for (unsigned index = 0; index < topology.size(); index++) {
-        std::cout << topology[index] << " ";
-    }
-
-    std::cout << std::endl;
 
     return;
 }
@@ -85,3 +73,101 @@ void TrainingData::showVectorVals(std::string label, std::vector<double> vector)
 
     std::cout << std::endl;
 }
+
+double TrainingData::getFuzzifier(void) {
+
+    std::string line;
+    std::getline(m_trainingDataFile, line);
+    std::stringstream stringStream (line);
+
+    std::string label;
+    stringStream >> label;
+    double fuzzifier = 2;
+    if (label.compare("fuzzifier:") == 0) {
+        double oneValue;
+        while (stringStream >> oneValue) {
+            fuzzifier = oneValue;
+        }
+    }
+
+    return fuzzifier;
+};
+double TrainingData::getErrorMargin(void) {
+
+    std::string line;
+    std::getline(m_trainingDataFile, line);
+    std::stringstream stringStream (line);
+
+    std::string label;
+    stringStream >> label;
+
+    double errorMargin = 0.15;
+    if (label.compare("errorMargin:") == 0) {
+        double oneValue;
+        while (stringStream >> oneValue) {
+            errorMargin = oneValue;
+        }
+    }
+
+    return errorMargin;
+
+};
+double TrainingData::getIterLimit(void) {
+
+    std::string line;
+    std::getline(m_trainingDataFile, line);
+    std::stringstream stringStream (line);
+
+    std::string label;
+    stringStream >> label;
+
+    double iterationLimit = 1000;
+    if (label.compare("iterationLimit:") == 0) {
+        double oneValue;
+        while (stringStream >> oneValue) {
+            iterationLimit = oneValue;
+        }
+    }
+
+    return iterationLimit;
+};
+double TrainingData::getLearningRate(void) {
+
+    std::string line;
+    std::getline(m_trainingDataFile, line);
+    std::stringstream stringStream (line);
+
+    std::string label;
+    stringStream >> label;
+
+    double learningRate = 2;
+    if (label.compare("learningRate:") == 0) {
+        double oneValue;
+        while (stringStream >> oneValue) {
+            learningRate = oneValue;
+        }
+    }
+
+    return learningRate;
+
+};
+double TrainingData::getMomentum(void) {
+
+    std::string line;
+    std::getline(m_trainingDataFile, line);
+    std::stringstream stringStream (line);
+
+    std::string label;
+    stringStream >> label;
+
+    double momentum = 0.1;
+    if (label.compare("momentum:") == 0) {
+        double oneValue;
+        while (stringStream >> oneValue) {
+            momentum = oneValue;
+        }
+    }
+
+    return momentum;
+
+};

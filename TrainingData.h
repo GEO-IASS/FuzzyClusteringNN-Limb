@@ -19,6 +19,12 @@ public:
     unsigned getNextInputs(std::vector<double> &inputVals);
     unsigned getTargetOutputs(std::vector<double> &targetOutputVals);
     void showVectorVals(std::string label, std::vector<double> vector);
+    double getFuzzifier(void);
+    double getErrorMargin(void);
+    double getIterLimit(void);
+    double getLearningRate(void);
+    double getMomentum(void);
+    void resetEOF(void) { m_trainingDataFile.clear(); m_trainingDataFile.seekg(0, std::ios::beg);}
 private:
     std::ifstream m_trainingDataFile;
 };

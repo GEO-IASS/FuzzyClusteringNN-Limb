@@ -4,9 +4,6 @@
 
 #include "Neuron.h"
 
-double Neuron::eta = 2; // overall net learning rate
-double Neuron::alpha = 0.1; // momentum, multiplier of last deltaWeight
-
 void Neuron::updateInputWeights(Layer &prevLayer) {
     // The weights to be updated are in the Connection container in the neurons in the preceding layer
     for (unsigned neuronNum = 0; neuronNum < prevLayer.size(); neuronNum++) {

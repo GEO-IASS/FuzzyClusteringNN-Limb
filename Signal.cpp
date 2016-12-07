@@ -21,7 +21,7 @@ void Signal::setClusterIndex(double clusterIndex) {
     m_clusterIndex = clusterIndex;
 }
 
-double Signal::getClusterIndex() {
+int Signal::getClusterIndex() {
     return m_clusterIndex;
 }
 
