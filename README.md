@@ -6,7 +6,7 @@ This project is an implementation of an Multi-Layered Perceptron Neural Network 
 The publication goes into detail of how to build and train a neural network as well as how to implement fuzzy clustering on  a data set.
 
 ## How it works
-Upon execution, a file is loaded containing training data. An example of the file can be found in the `build/Debug` directory.
+Upon execution, a file is loaded containing training data. An example of the file can be found in the `trainingSamples` directory.
 The program then executes as follows:
 - Parses the file for all input values and creates signal objects based on the data
 - Fuzzy Clustering is then executed on the signals created until the margin of error is below threshold.
@@ -31,12 +31,13 @@ The neural network returns 6 outputs:
     - Elbow flexion 
 
 The network is fed this information through a single hidden layer (You can use multiple hidden layers by adding another layer to the `topology` line in the training file).
+The network's learning rate and momentum coefficients are configurable through the training input file
 More information on the network's cost and activation functions can be found in the linked article.
  
 ## Clustering
 The clustering algorithm used is the Fuzzy C-Means algorithm.
-- The fuzzifier coefficient is set to 2.
-- The margin of error is set to 0.1
+- The fuzzifier coefficient is configurable through the training input file.
+- The margin of error is configurable through the training input file
 
 More information about the Fuzzy C-Means algorithm can be found:
 - https://en.wikipedia.org/wiki/Fuzzy_clustering#Fuzzy_C-means_Clustering
