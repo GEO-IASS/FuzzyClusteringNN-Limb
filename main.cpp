@@ -118,7 +118,7 @@ int main() {
 
         // Collect the net's actual results
         myNet.getResults(resultVals);
-        trainData.showVectorVals("Outputs :", resultVals);
+        liveData.showVectorVals("Outputs :", resultVals);
 
         // Train the net what the outputs should have been
         liveData.getTargetOutputs(targetVals);
