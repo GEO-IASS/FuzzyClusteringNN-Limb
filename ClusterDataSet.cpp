@@ -26,7 +26,7 @@ void ClusterDataSet::setInitialClusters(std::vector<Signal> &signalData) {
             randomSignalIndex = rand() % signalData.size();
             currentSignal = signalData[randomSignalIndex].getSignal();
             for (int i = 0; i < clusters.size(); i++) {
-                if (clusters[i][currentSignal.size()-1] == currentSignal[currentSignal.size()-1]) {
+                if (clusters[i] == currentSignal) {
                     duplicate = true;
                     break;
                 }
