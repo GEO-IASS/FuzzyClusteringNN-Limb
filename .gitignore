@@ -1,2 +1,10 @@
 # Created by .ignore support plugin (hsz.mobi)
 /.idea/
+cmake-build-debug/CMakeFiles
+cmake-build-debug/CMakeCache.txt
+cmake-build-debug/CMakeFiles/CMakeTmp/
+cmake-build-debug/FuzzyClusteringNN-Limb.cbp
+cmake-build-debug/Makefile
+cmake-build-debug/cmake_install.cmake
+cmake-build-debug/generatedTrainingData.txt
+cmake-build-debug/liveData.txt
